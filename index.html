@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farewell Event</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    .welcome-page {
+      height: 100vh;
+      background-image: url('collage.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    .welcome-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+    .welcome-content {
+      z-index: 2;
+    }
+    .welcome-content h1 {
+      font-size: 2.8rem;
+      animation: fadeIn 2s ease-in;
+    }
+    .enter-button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background: #ffffff;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .enter-button:hover {
+      background: #ffd700;
+      color: #000;
+    }
+    .main-page { display: none;
+      background-image: url('floral_background.png');
+      background-size: cover;
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+    }
+  
+    .floral-divider {
+      width: 100vw;
+      height: 80px;
+      background-image: url('floral_snake.png');
+      background-repeat: repeat-x;
+      background-size: contain;
+      animation: moveDivider 20s linear infinite;
+    }
+    @keyframes moveDivider {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 0; }
+    }
+    .slideshow {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    .slideshow img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .section-heading {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .message-box, .junior-message-box {
+      background: #fadadd;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .message-box p, .junior-message-box p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .senior-tribute, .junior-tribute {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+    .senior-info, .junior-info {
+      background: #fff6e0;
+      padding: 20px;
+      border-radius: 12px;
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+    }
+    .senior-info h3, .junior-info h3 {
+      font-size: 1rem;
+      color: #888;
+    }
+    .senior-info h2, .junior-info h2 {
+      font-size: 1.6rem;
+      color: #222;
+    }
+    .senior-photo, .junior-photo, .junior1-photo {
+      flex: 1;
+      text-align: center;
+    }
+    .senior-photo img, .junior-photo img, .junior1-photo img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #ffd700;
+      object-fit: cover;
+    }
+    .wave {
+      display: inline-block;
+      animation: wave 2s infinite;
+      transform-origin: 70% 70%;
+    }
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+      60% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+    .image-buttons-section {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    }
+
+    .image-buttons-section button {
+     padding: 10px 20px;
+     font-size: 16px;
+     border: none;
+     background-color: #6a5acd;
+     color: white;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+    }
+    .image-buttons-section button:hover {
+      background-color: #483d8b;
+   }
+  
+  </style>
+</head>
+<body>
+  <div class="welcome-page">
+    <div class="welcome-overlay"></div>
+    <div class="welcome-content">
+      <h1>Welcome</h1>
+      <h1>Farewell 2025</h1>
+      <button class="enter-button" onclick="enterPage()">Open</button>
+    </div>
+  </div>
+
+  <div class="main-page">
+    <div class="floral-divider"></div>
+    <section>
+      <div class="slideshow" id="top-slideshow">
+        <img src="img1.jpg" class="active">
+        <img src="img2.jpg">
+        <img src="img3.jpg">
+      </div>
+      <div class="message-box fade-in" style="background-color: #ffe5b4; padding: 20px; border-radius: 10px;">
+        <h2>Dear Friends</h2>
+        <p>Our seniors have lit up our college days with memories and inspiration!
+Now it’s time we give them the send-off they truly deserve.
+Let’s come together, juniors and seniors, to throw a farewell party full of laughter, love, and unforgettable moments.
+Join us in celebrating them—because legends deserve nothing less than a legendary goodbye!</p>
+      </div>
+      <div class="slideshow" id="bottom-slideshow">
+        <img src="img4.jpg" class="active">
+        <img src="img5.jpg">
+        <img src="img6.jpg">
+      </div>
+    </section>
+
+    <div class="floral-divider"></div>
+
+    <section class="fade-in">
+      
+    <section class="fade-in">
+      <div class="slideshow" id="junior-slideshow">
+        <img src="junior1.jpg" class="active">
+        <img src="junior2.jpg">
+        <img src="junior3.jpg">
+        <img src="junior4.jpg">
+        <img src="junior5.jpg">
+        <img src="junior6.jpg">
+        <img src="junior7.jpg">
+        <img src="junior8.jpg">
+      </div>
+      <div class="section-heading">Ellarum vaanga Always! Welcomes You<span class="wave">💖</span></div>
+      <div class="slideshow" id="junior1-slideshow">
+        <img src="junior9.jpg" class="active">
+        <img src="junior10.jpg">
+        <img src="junior11.jpg">
+        <img src="junior12.jpg">
+        <img src="junior13.jpg">
+        <img src="junior14.jpg">
+        <img src="junior15.jpg">
+        <img src="junior16.jpg">
+      </div>
+    </section>
+    </section>
+
+   <div class="floral-divider"></div>
+
+    <section class="fade-in">
+      <div class="section-heading">We'll enjoy the moments together. <span class="wave">✨</span></div>
+
+      <div class="message-box" style="background-color: #a9c9ff; padding: 20px; border-radius: 10px;">
+        <h2>Performances</h2>
+        <p>Juniors and seniors will light the stage on fire with energetic and emotional dance and singing performances, celebrating our time together.</p>
+      </div>
+      <img src="event1.jpg" alt="Dance and Singing" style="width:100%; border-radius: 12px; margin: 20px 0;">
+
+      <div class="message-box" style="background-color: #a9c9ff; padding: 20px; border-radius: 10px;">
+        <h2>Feast Time</h2>
+        <p>A delicious dinner will be served, bringing everyone together over warm food and joyful conversations.</p>
+      </div>
+      <img src="event2.jpg" alt="Dinner" style="width:100%; border-radius: 12px; margin: 20px 0;">
+
+      <div class="message-box" style="background-color: #a9c9ff; padding: 20px; border-radius: 10px;">
+        <h2>Disco Night</h2>
+        <p>We'll wrap up the night with an epic DJ session—music, dance, and celebration all around!</p>
+      </div>
+      <img src="event3.jpg" alt="DJ" style="width:100%; border-radius: 12px; margin: 20px 0;">
+    </section>
+
+    <div class="floral-divider"></div>
+
+    <section class="fade-in">
+      <div class="section-heading">Event Details <span class="wave">📍</span></div>
+      <img src="location.jpg" alt="Location" style="width:100%; border-radius: 12px; margin-bottom: 20px;">
+      <div class="message-box" style="background-color: #ffe5b4; padding: 20px; border-radius: 10px;">
+        <h2>Date & Time</h2>
+        <p><strong>Date:</strong> May 11</p>
+        <p><strong>Time:</strong> 6:00 PM – 11:00 PM</p>
+        <p><strong>Venue:</strong> Tourist</p>
+        <p><strong>Address:</strong> Gomiel, Savieckaja Street, 87</p>
+      </div>
+
+      <div class="section-heading">Thank You <span class="wave">❤️</span></div>
+      <div class="message-box" style="background-color: #ffe5b4; padding: 20px; border-radius: 10px;">
+        <p>Big thanks for all the fun, support, and good vibes!</p>
+      </div>
+
+    <div class="image-buttons-section">
+      <button onclick="openImage('english.jpg')">English</button>
+      <button onclick="openImage('tamil.jpg')">Tamil</button>
+      <button onclick="openImage('malayalam.jpg')">Malayalam</button>
+      <button onclick="openImage('telugu.jpg')">Telugu</button>
+      <button onclick="openImage('hindi.jpg')">Hindi</button>
+    </div>
+  </div>
+   </section>
+   <audio id="bg-music" autoplay loop>
+  <source src="your-music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+   <div class="floral-divider"></div>
+
+  <script>
+    function enterPage() {
+      document.querySelector('.welcome-page').style.display = 'none';
+      document.querySelector('.main-page').style.display = 'block';
+    }
+
+    function runSlideshow(id) {
+      const images = document.querySelectorAll(`#${id} img`);
+      let i = 0;
+      setInterval(() => {
+        images[i].classList.remove('active');
+        i = (i + 1) % images.length;
+        images[i].classList.add('active');
+      }, 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      runSlideshow('top-slideshow');
+      runSlideshow('bottom-slideshow');
+      runSlideshow('junior-slideshow');
+      runSlideshow('junior1-slideshow');
+    });
+
+    function openImage(src) {
+      const imageWindow = window.open("", "_blank");
+      imageWindow.document.write(`<img src="${src}" style="width:100%; height:auto;">`);
+    }
+  window.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('bg-music');
+    audio.volume = 0.2; // Set volume to a comfortable level
+    audio.play().catch(e => {
+      console.log("Autoplay prevented, will play on user interaction");
+      document.body.addEventListener('click', () => {
+        audio.play();
+      }, { once: true });
+    });
+  });
+  </script>
+</body>
+</html>
